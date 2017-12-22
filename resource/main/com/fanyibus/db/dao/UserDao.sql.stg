@@ -1,0 +1,28 @@
+group UserDao;
+
+
+total() ::= <<
+  select count(*) from police_officer
+>>
+	
+findById(id) ::= <<
+  select id, pd_id, full_name, password, job_title, user_type_id, big_screen, create_time from police_officer where id = :id
+>>
+
+findByName(name) ::= <<
+	select id, pd_id, full_name, password, job_title, user_type_id, big_screen, create_time from police_officer where full_name = :name"
+>>
+
+findAll(sort,dir) ::= <<
+	select id, pd_id, full_name, password, job_title, user_type_id, big_screen, create_time from police_officer order by <sort> <dir>
+>>
+
+insert() ::= <<	
+	insert into police_officer(id,pd_id,full_name,password,job_title,user_type_id,big_screen) 
+	values(:id,:pdId,:fullName,:password,:jobTitle,:userTypeId,:bigScreen)
+>>
+
+update() ::= <<
+	update police_officer set pd_id=:pdId,full_name=:fullName,password=:password,job_title=:jobTitle,user_type_id=:userTypeId,big_screen=:bigScreen
+	where id=:id
+>>
